@@ -3,7 +3,11 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cookieParser =  require('cookie-parser')
 const cors = require('cors')
-require('dotenv').config()
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+
+dotenv.config();
 
 const app = express()
 //middleware
@@ -15,6 +19,15 @@ if(process.env.NODE_ENV === "development"){
     app.use(cors({origin:`${process.env.CLIENT_URL}`}));
 }
 
+
+// database connection
+mongoose
+    .connect(process.env.DATABASE, { useNewUrlParser: true })
+    .then(() => console.log("DB Connected"));
+
+mongoose.connection.on("error", err => {
+    console.log(`DB connection error: ${err.message}`);
+});
 
 
 //routes
