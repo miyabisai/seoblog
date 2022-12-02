@@ -5,6 +5,10 @@ const cookieParser =  require('cookie-parser')
 const cors = require('cors')
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+//routes
+const blogRoutes = require('./routes/blog');
+const authRoutes = require('./routes/auth');
+
 
 
 dotenv.config();
@@ -30,10 +34,11 @@ mongoose.connection.on("error", err => {
 });
 
 
-//routes
-app.get('/api',(req,res)=>{
-    res.json({time:Date().toString()});
-});
+
+//routes middleware
+app.use('/api',blogRoutes);
+app.use('/api',authRoutes);
+
 
 const port = process.env.PORT
 app.listen(port,()=>{
