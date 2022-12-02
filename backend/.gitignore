@@ -3,3 +3,7 @@ package-lock.json
 .env
 
 server1.js
+server2.js
+server3.js
+routes/auth1.js
+models/user1.js
