@@ -8,3 +8,4 @@ server3.js
 routes/auth1.js
 models/user1.js
 controllers/auth1.js
+controllers/auth2.js
