@@ -39,7 +39,8 @@ exports.signin=(req,res)=>{
             });
         }
         //authenticate
-        if(!user.authenticate){
+        
+        if(!user.authenticate(password)){
             return res.status(400).json({
                 error:'Email and password do not mathc.'
             });
